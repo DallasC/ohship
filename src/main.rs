@@ -2,8 +2,8 @@ extern crate quicksilver;
 
 use quicksilver::{
     Result,
-    geom::{Vector},
-    graphics::{Color},
+    geom::{Vector, Rectangle, Transform},
+    graphics::{Color, Background},
     lifecycle::{Settings, State, Window, run},
 };
 
@@ -16,6 +16,12 @@ impl State for Game {
 
     fn draw(&mut self, window: &mut Window) -> Result<()> {
         window.clear(Color::BLACK)?;
+        window.draw_ex(
+            &Rectangle::new((275, 275), (50, 50)),
+            Background::Col(Color::RED),
+            Transform::rotate(45) * Transform::scale((2, 2)),
+            0
+        );
         Ok(())
     }
 }
