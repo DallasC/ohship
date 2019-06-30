@@ -1,0 +1,7 @@
+[package]
+name = "ohship"
+version = "0.1.0"
+authors = ["Dallas Coble <dallascoble@outlook.com>"]
+edition = "2018"
+
+[dependencies]
