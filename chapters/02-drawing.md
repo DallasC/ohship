@@ -72,9 +72,9 @@ Now if we run `cargo web start` you'll see that our square is now a diamond.
 ## Summary
 Here was just a quick lesson on how to get things to appear on the screen. You also learned how to apply different transforms to the things that you want to draw.
 
- As always [check out the full source code here](https://github.com/DallasC/ohship). Just go to the branch with the same name as the chapter.
+As always [check out the full source code here](https://github.com/DallasC/ohship). Just go to the branch with the same name as the chapter.
 
- Next chapter we are going to learn how to process input events to move our shape around!
+Next chapter we are going to learn how to process input events to move our shape around!
 
 
 

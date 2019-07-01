@@ -118,6 +118,6 @@ Once it is done compiling it tells you to check out port 8000. If you go to your
 ## Summary
 Here we just went through the basics of setting up a new `Quicksilver` project and getting it to compile to WASM so that we could see it in our browser.
 
- If you ever get a little lost or something is not compiling you can [check out the full source code here](https://github.com/DallasC/ohship). Just go to the branch with the same name as the chapter and you'll see the working version.
+If you ever get a little lost or something is not compiling you can [check out the full source code here](https://github.com/DallasC/ohship). Just go to the branch with the same name as the chapter and you'll see the working version.
 
 In the next chapter we start drawing stuff on our new canvas!

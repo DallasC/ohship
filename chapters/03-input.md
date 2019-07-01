@@ -1,4 +1,4 @@
-# Draw
+# Input
 By the end of this chapter you are going to know how to process different input events and also be able to move stuff around on the screen.
 
 ## Processing keyboard events
@@ -169,5 +169,7 @@ Now run `cargo web start` and you can see it in action.
 
 ## Summary 
 We made a new character struct and gave the rectangle that we have been drawing the ability to move around. We also learned how to process keyboard events. We used the update loop for this but in later chapters we are going to cover processing other types of events using quicksilvers `fn event()`.
+
+As always [check out the full source code here](https://github.com/DallasC/ohship). Just go to the branch with the same name as the chapter.
 
 Next chapter we are going to learn about asset loading and load a sprite atlas. We are also going to use the sprite atlas to update finally give our rectangle an image so it isn't just a boring red rectangle any more.

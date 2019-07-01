@@ -3,9 +3,9 @@ extern crate quicksilver;
 use quicksilver::{
     Result,
     geom::{Vector, Rectangle, Transform},
-    graphics::{Color, Background},
+    graphics::{Color, Background, Atlas},
     input::{Key},
-    lifecycle::{Settings, State, Window, run},
+    lifecycle::{Asset, Settings, State, Window, run},
 };
 
 struct Player {
@@ -17,20 +17,22 @@ struct Player {
 impl Player {
     fn new() -> Player {
         let body = Rectangle::new((277, 243), (66, 113));
-        let angle = 0.;
+        let angle = 180.;
         let z = 2;
         Player {body, angle, z}
     }
 }
 
 struct Game {
-    player: Player
+    player: Player,
+    atlas:  Asset<Atlas>
 }
 
 impl State for Game {
     fn new() -> Result<Game> {
         Ok(Game {
             player: Player::new(),
+            atlas: Asset::new(Atlas::load("spritesheet.txt"))
         })
     }
     
@@ -38,8 +40,8 @@ impl State for Game {
         if w.keyboard()[Key::Up].is_down() ||  w.keyboard()[Key::W].is_down() { 
             // From degrees to radians
             let angle = self.player.angle * std::f32::consts::PI / 180f32 ; 
-            let dx = angle.sin() * 4.;
-            let dy = angle.cos() * -4.;
+            let dx = angle.sin() * -4.;
+            let dy = angle.cos() * 4.;
             self.player.body.pos.x = self.player.body.pos.x + dx;
             self.player.body.pos.y = self.player.body.pos.y + dy;
         }  
@@ -54,13 +56,19 @@ impl State for Game {
 
     fn draw(&mut self, window: &mut Window) -> Result<()> {
         window.clear(Color::BLACK)?;
-        window.draw_ex(
-            &self.player.body,
-            Background::Col(Color::RED),
-            Transform::rotate(self.player.angle),
-            self.player.z
-        );
-        Ok(())
+        let body = &self.player.body;
+        let angle = self.player.angle;
+        let z = self.player.z;
+        self.atlas.execute(|atlas| {
+            let texture = &atlas.get("redShip1").unwrap().unwrap_image();
+            window.draw_ex(
+                body,
+                Background::Img(texture),
+                Transform::rotate(angle),
+                z
+            );
+            Ok(())
+        })
     }
 }
 

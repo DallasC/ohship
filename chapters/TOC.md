@@ -4,3 +4,5 @@
     Learn to draw basic shapes on the screen and apply transformations to them.
 3. input
     Learn to process input events and move stuff around on the screen
+4. assets
+    Learn how to load a sprite asset and put textures onto shapes
