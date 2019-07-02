@@ -5,4 +5,6 @@
 3. input
     Learn to process input events and move stuff around on the screen
 4. assets
-    Learn how to load a sprite asset and put textures onto shapes
+    Learn how to load game assets and use those assets to put textures on a shape
+5. game-state
+    Add different game states and create a loading screen. Also, split code into separate files.
