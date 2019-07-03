@@ -1,6 +1,6 @@
 use quicksilver::{
-    Result, geom::{Transform},
-    graphics::{Color, Background},
+    Result, geom::{Transform, Rectangle, Shape},
+    graphics::{Color, Background, View},
     input::{Key}, lifecycle::{Event, Window},
 };
 use crate::{
@@ -9,14 +9,29 @@ use crate::{
 };
 
 pub struct PlayState {
-    player: Player
+    player: Player,
+    view: Rectangle,
 }
 
 impl PlayState {
     pub fn new()  -> PlayState {
         PlayState {
             player: Player::new(),
+            view: Rectangle::new_sized((600, 600)),
         }
+    }
+
+    fn update_position(&mut self) {
+        // From degrees to radians
+        let angle = self.player.angle * std::f32::consts::PI / 180f32 ; 
+        let dx = angle.sin() * -4.;
+        let dy = angle.cos() * 4.;
+        // Update player position
+        self.player.body.pos.x = self.player.body.pos.x + dx;
+        self.player.body.pos.y = self.player.body.pos.y + dy;
+        // Update view position
+        self.view = self.view.translate((dx, dy));
+
     }
 }
 
@@ -24,12 +39,8 @@ impl GameState for PlayState {
 
     fn update(&mut self, window: &mut Window, _assets: &mut GameAssets) -> StateTransition {
         if window.keyboard()[Key::Up].is_down() ||  window.keyboard()[Key::W].is_down() { 
-            // From degrees to radians
-            let angle = self.player.angle * std::f32::consts::PI / 180f32 ; 
-            let dx = angle.sin() * -4.;
-            let dy = angle.cos() * 4.;
-            self.player.body.pos.x = self.player.body.pos.x + dx;
-            self.player.body.pos.y = self.player.body.pos.y + dy;
+            self.update_position();
+            window.set_view(View::new(self.view));
         }  
         if window.keyboard()[Key::Left].is_down() ||  window.keyboard()[Key::A].is_down() {
             self.player.angle = (self.player.angle - 2.) % 360.;
@@ -45,6 +56,7 @@ impl GameState for PlayState {
         let body = &self.player.body;
         let angle = self.player.angle;
         let z = self.player.z;
+        window.draw(&Rectangle::new((250,250), (300,300)), Background::Col(Color::BLUE));
         assets.atlas.execute(|atlas| {
             let texture = &atlas.get("redShip1").unwrap().unwrap_image();
             window.draw_ex(
