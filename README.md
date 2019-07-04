@@ -1,7 +1,7 @@
 # Oh! Ship
 A not quite so simple but still simple game written in Rust.
 
-**Note: This is still a work in progress. Check the roadmap section to see how far along we are.**
+*Note: This is still a work in progress. Check the roadmap section to see how far along we are.*
 
 ## Try it out
 All the tutorials are in the `chapters` folder. You can go to the branch with the associated chapter name and it will have just the code up to the end of that chapter. For example if you are on chapter `05-game-state` go to the `game-state` branch.
@@ -13,15 +13,15 @@ The Rust game development community is still relatively new and still going thro
 
 I hope to help fill this gap and provide a solid example that covers things that you would expect to find in a game made in 2019. Some things that I plan to inclue are
 
-- Compiling to WASM
-    It is 2019 and you'll find that most people don't want to download and install a small simple game. It is much easier to get people to try your game if all you have to do is open a webpage. 
-- Nontrivial game features
+- Compiling to WASM   
+It is 2019 and you'll find that most people don't want to download and install a small simple game. It is much easier to get people to try your game if all you have to do is open a webpage. 
+- Nontrivial game features   
     I'm not going to be making a complex game by any means but I want to go more in depth than a basic tetris, snake, space invader type example. I want to include how to make menus, moving camera that follows your character, basic gameplay components, animations, and so on
-- Multiplayer
+- Multiplayer   
     It's a lot more fun to play games with other people. I want to show you how to add basic multiplayer functionality to your game via websockets. Don't expect to have 1000 in the same lobby with this method but you should easily be able have 10 people playing together.
 
 ## Roadmap
-*Game*
+**Game**
 - [x] Set-up
 - [x] Drawing
 - [x] Input
@@ -34,7 +34,8 @@ I hope to help fill this gap and provide a solid example that covers things that
 - [ ] Menu
 - [ ] Bot-AI
 - [ ] \(Optional) Additional-gameplay-features
-*Multiplayer*
+
+**Multiplayer**
 - [ ] Server-setup
 - [ ] Websockets
 - [ ] Client-prediction
