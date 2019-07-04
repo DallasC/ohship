@@ -459,7 +459,7 @@ Lastly we have our `update()`. There is not much going on here since we aren't l
     }
 }
 ```
-
+You can see the changes we made by running `cargo web start` again.
 ## Summary
 Wow! We made a ton of changes this time. We seperated our code base and added an entire state management system. This was by far our longest chapter yet so good job at making it all the way here!! This was also the first non-trivial piece of code we went over in this guide. The past chapters you could have figured out by looking at the docs/examples and piecing it together yourself. One of the big goals in writing this is to go over non-trivial stuff when it comes to making games. The Rust game dev scene is still rather small and young even though it has some big goals. One thing this means is that there is a lack of material on how to do things beyond the basics of a single screen games like pong, snake, or astroids. I hope to fill this gap so we can start seeing some more creative games that are made using Rust!
 

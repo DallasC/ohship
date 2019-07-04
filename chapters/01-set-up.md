@@ -66,21 +66,21 @@ impl State for Game {
 }
 ```
 This is basically Quicksilver's game loop. 
-- `new` 
+- `new`   
     This what we use to intialize our game state. It is required even though it is empty for now. In the future we are going to be adding stuff to it.
 
     From the quicksilver docs: `new` is the only mandatory function of `State`, which every Quicksilver application must implement. Start all asset loading here, as well as initializing physics worlds or other persistent state.
 
     Do not attempt to use any Quicksilver features before `new` runs! For example, do not call `Image::load` in your main before you invoke run. Platform-specific setup occurs behind-the-scenes, so just use new for all your initialization.
-- `update`
+- `update`   
     We don't have this yet but we are going to add this later. 
 
     From the quicksilver docs: Update is useful for any fixed-rate calculations or ticks. By default, it is called 60 times per second, and will attempt to make up for any lost time. See this [Gaffer on Games](https://gafferongames.com/post/fix_your_timestep/) blog post for a description of the algorithm. You can change the tick rate with the update_rate setting, which determines how many milliseconds take place between ticks.
-- `draw`
+- `draw`   
     This is our render event. It is what we use to draw the scene that the user sees. Right now we are just clearing the color and setting it to black. You can also use pick a color via `RGBA`, `Hex`, or from some built in colors like `BLACK`. [Look here for all the options](https://docs.rs/quicksilver/0.3.15/quicksilver/graphics/struct.Color.html)
 
     From the quicksilver docs: By default, it will run as fast as vsync will allow. You can choose to run it less often, by providing higher values to draw_rate in Settings. After each call to draw, the buffers are flipped (meaning your changes become visible to the user).
-- `event`
+- `event`   
     We also don't have this yet either. Here we can set up basic event listeners such as waiting for a key to be pressed and performing some action in response to that.
 
     From the quicksilver docs: event is called when the events are triggered, either immediately or buffered before the next update. Events can form their own custom lifecycle: for example, listening for an Event::Closed means you can run code to save the game state before the application terminates.
@@ -96,13 +96,13 @@ fn main() {
 This is our main function and we just run the Quicksilver Game here. This is pretty much all we ever have in our main section so we just set it and forget it.
 
 In `run` 
-- `<Game>`
+- `<Game>`   
     This our game struct. If you call your struct something else you have to change this
-- `"Oh! Ship"`
+- `"Oh! Ship"`   
     The first string is the title of the game. It is going to appear as the tab title in the browser.
-- `Vector::new(600, 600)`
+- `Vector::new(600, 600)`   
     This is the starting size of our window/canvas. You can resize while the game is running.
-- `Settings::default()`
+- `Settings::default()`   
     These are Quicksilver settings where you can do stuff like adjust the framerate, hide/show the mouse, and a [number of different things](https://docs.rs/quicksilver/0.3.15/quicksilver/lifecycle/struct.Settings.html).
 
 ## Running our App

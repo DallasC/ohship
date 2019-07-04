@@ -19,9 +19,9 @@ fn draw(&mut self, window: &mut Window) -> Result<()> {
 ```
 
 Here we just added a `.draw()` function to the window. It takes two parameters:
-- Drawable
+- Drawable   
     These are shapes that you can draw on the screen. Quicksilver comes with several built in drawables including [Rectangle](https://docs.rs/quicksilver/0.3.15/quicksilver/geom/struct.Line.html), [Circle](https://docs.rs/quicksilver/0.3.15/quicksilver/geom/struct.Circle.html), [Triangle](https://docs.rs/quicksilver/0.3.15/quicksilver/geom/struct.Circle.html), or [Line](https://docs.rs/quicksilver/0.3.15/quicksilver/geom/struct.Line.html). It also has support for custom [meshes](https://docs.rs/quicksilver/0.3.15/quicksilver/tutorials/_11_mesh/index.html) so you can make your own custom drawables if you want. 
-- Background
+- Background   
     This is what is displayed on the drawable. A background can either be a [solid color](https://docs.rs/quicksilver/0.3.15/quicksilver/graphics/struct.Color.html) via `Background::Col()`, an [image](https://docs.rs/quicksilver/0.3.15/quicksilver/graphics/struct.Image.html) via `Background::Img()`, or a color and image blended multiplicatively via `Background::Blended()`.
  
  Now if we run `cargo web start` and go to our browser we see a nice red square in the middle of the canvas.
@@ -56,15 +56,15 @@ fn draw(&mut self, window: &mut Window) -> Result<()> {
 ```
 
 You'll notice we changed `draw()` to `draw_ex()`. This takes 4 args in total instead of 2. They are
-- Drawable
+- Drawable   
     Same as `draw()`
-- Background
+- Background   
     Same as `draw()`
-- Transform
+- Transform   
     Transforms the shape. There are 4 transfroms `IDENTITY` does nothing returns the same shape, `rotate(angle)`rotates counter-clockwise by a given amount of **degrees** (not raidians), `translate(vector)` moves an object by a given vector, and `scale(vector)` resizes with a given x and y axis scale factor.
 
     These transforms can also be chained together with the last transform in a chain being applied first. In our example we first double the size then rotate it 45 degrees. 
-- z value
+- z value   
     This is the order in which things are drawn on the screen. A higher z value is drawn on top of things with a lower z value. We only have one thing so far so this doesn't matter for us right now.
 
 Now if we run `cargo web start` you'll see that our square is now a diamond.
