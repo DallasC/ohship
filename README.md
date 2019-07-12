@@ -28,11 +28,11 @@ It is 2019 and you'll find that most people don't want to download and install a
 - [x] Assets
 - [x] Game-state
 - [x] Camera
-- [ ] Tile-map
+- [x] Tilemap
 - [ ] Collision-detection
 - [ ] Animation
 - [ ] Menu
-- [ ] Bot-AI
+- [ ] \(Optional) Bot-AI
 - [ ] \(Optional) Additional-gameplay-features
 
 **Multiplayer**
@@ -42,6 +42,7 @@ It is 2019 and you'll find that most people don't want to download and install a
 - [ ] Server-reconciliation
 - [ ] Entity-interpolation
 - [ ] Lag-compensation
+- [ ] Game-lobby
 - [ ] \(Optional) Chat
 
 ## Technologies

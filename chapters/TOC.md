@@ -10,3 +10,5 @@
     Add different game states and create a loading screen. Also, split code into separate files.
 6. camera   
     Set up a camera that keeps our ship in the center of the screen even when moving
+6. tilemap   
+    Create a tile map for our ship to move around on. Also, learn to parse external files in order to load a tile map from a file.

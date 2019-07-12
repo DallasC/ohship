@@ -1,30 +1,35 @@
 extern crate quicksilver;
 
 mod components;
-mod state;
 
-use state::StateManager;
+mod map;
+mod state;
+use map::Map;
 
 use quicksilver::{
-    Result, geom::Vector, graphics::Atlas,
-    lifecycle::{Asset, Settings, State, Window, Event, run},
+    geom::Vector,
+    graphics::Atlas,
+    lifecycle::{run, Asset, Event, Settings, State, Window},
+    Result,
 };
-
+use state::StateManager;
 pub struct GameAssets {
-    pub atlas:  Asset<Atlas>,
+    pub atlas: Asset<Atlas>,
+    pub map: Asset<String>,
 }
 
 impl GameAssets {
     pub fn new() -> GameAssets {
         GameAssets {
             atlas: Asset::new(Atlas::load("spritesheet.txt")),
+            map: Map::load("level.txt"),
         }
     }
 }
 
 struct Game {
     state: StateManager,
-    assets:  GameAssets,
+    assets: GameAssets,
 }
 
 impl State for Game {
@@ -34,7 +39,7 @@ impl State for Game {
             assets: GameAssets::new(),
         })
     }
-    
+
     fn update(&mut self, window: &mut Window) -> Result<()> {
         let current_state_ref = self.state.current_state();
         let transition = {

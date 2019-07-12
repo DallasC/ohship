@@ -1,18 +1,16 @@
-use std::{
-    rc::Rc, cell::RefCell,
-};
 use quicksilver::{
-    Result, lifecycle::{Event, Window},
+    lifecycle::{Event, Window},
+    Result,
 };
-
+use std::{cell::RefCell, rc::Rc};
 // Import states
 pub mod loading;
 pub mod play;
 
 use crate::{
-    GameAssets, state::{
-        loading::LoadingState, play::PlayState,
-    }
+    map::Map,
+    state::{loading::LoadingState, play::PlayState},
+    GameAssets,
 };
 
 pub enum CurrentState {
@@ -20,23 +18,25 @@ pub enum CurrentState {
     Playing,
 }
 
+#[allow(dead_code)]
 pub enum StateTransition {
     NoTransition,
     StateLessTransition(CurrentState),
+    StartGameTransition(Map),
 }
 
 pub struct StateManager {
     pub loading: Rc<RefCell<LoadingState>>,
-    pub play: Rc<RefCell<GameState>>,
+    pub play: Rc<RefCell<PlayState>>,
     pub current_state: CurrentState,
 }
 
 impl StateManager {
     pub fn new() -> StateManager {
         StateManager {
-            loading : Rc::new(RefCell::new(LoadingState::new())),
+            loading: Rc::new(RefCell::new(LoadingState::new())),
             play: Rc::new(RefCell::new(PlayState::new())),
-            current_state : CurrentState::Loading,
+            current_state: CurrentState::Loading,
         }
     }
 
@@ -47,12 +47,17 @@ impl StateManager {
         }
     }
 
-    pub fn transition_state(&mut self, transition : StateTransition) {
+    pub fn transition_state(&mut self, transition: StateTransition) {
         match transition {
             StateTransition::NoTransition => (),
-            StateTransition::StateLessTransition(state) =>  {
+            StateTransition::StateLessTransition(state) => {
                 self.current_state = state;
-            },
+            }
+            StateTransition::StartGameTransition(map) => {
+                let mut play_state_mut = self.play.borrow_mut();
+                play_state_mut.update_map(map);
+                self.current_state = CurrentState::Playing;
+            }
         }
     }
 }
