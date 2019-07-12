@@ -4,8 +4,8 @@ use quicksilver::{
     lifecycle::{Event, Window},
 };
 use crate::{
-    state::{StateTransition, CurrentState, GameState},
-    GameAssets
+    state::{StateTransition, GameState},
+    GameAssets, map::Map,
 };
 
 pub struct LoadingState;
@@ -16,11 +16,20 @@ impl LoadingState{
     }
 }
 
+#[allow(unused_must_use)]
 impl GameState for LoadingState {
     fn update(&mut self, _window: &mut Window, assets: &mut GameAssets) -> StateTransition {
         let mut transition = StateTransition::NoTransition;
-        let _x = assets.atlas.execute(|_| {
-            transition = StateTransition::StateLessTransition(CurrentState::Playing);
+        let mut textures = false;
+        assets.atlas.execute(|_| {
+            textures = true;
+            Ok(())
+        });
+        assets.map.execute(|data| {
+            let new_map = Map::from_string(data);
+            if textures {
+                transition = StateTransition::StartGameTransition(new_map);
+            }
             Ok(())
         });
         transition
